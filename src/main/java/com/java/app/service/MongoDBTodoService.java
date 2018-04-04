@@ -6,12 +6,17 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.java.app.DTO.TodoDTO;
 import com.java.app.appException.TodoNotFoundException;
 import com.java.app.dao.Todo;
 import com.java.app.dao.TodoRepository;
 
+@Service
 public class MongoDBTodoService implements TodoService {
 	private final TodoRepository repository;
 	 

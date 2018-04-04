@@ -3,7 +3,6 @@ package com.java.app.service;
 import java.util.List;
 
 import com.java.app.DTO.TodoDTO;
-import com.java.app.appException.TodoNotFoundException;
 
 public interface TodoService {
 

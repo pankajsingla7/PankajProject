@@ -31,7 +31,7 @@ public class TodoController {
  
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    TodoDTO create(@RequestBody @Valid TodoDTO todoEntry) {
+    TodoDTO create(@RequestBody  TodoDTO todoEntry) {
         return service.create(todoEntry);
     }
  
