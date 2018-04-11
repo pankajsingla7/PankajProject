@@ -3,15 +3,15 @@ package com.java.app.dao;
 import java.util.List;
 import java.util.Optional;
 
-import com.java.app.dao.Todo;
+import org.springframework.data.repository.Repository;
 
-public interface TodoRepository {
+public interface TodoRepository extends Repository<Todo, String> {
 
 	void delete(Todo deleted);
 	 
     List<Todo> findAll();
  
-    Optional<Todo> findOne(String id);
+    Optional<Todo> findById(String id);
  
     Todo save(Todo saved);
 	

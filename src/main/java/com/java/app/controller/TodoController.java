@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping("/api/todo")
+@CrossOrigin("*")
 public class TodoController {
 
 	private final TodoService service;
@@ -58,6 +60,7 @@ public class TodoController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleTodoNotFound(TodoNotFoundException ex) {
+    	ex.printStackTrace();
     }
 	
 }

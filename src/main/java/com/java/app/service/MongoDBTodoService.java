@@ -2,13 +2,9 @@ package com.java.app.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.java.app.DTO.TodoDTO;
@@ -28,8 +24,8 @@ public class MongoDBTodoService implements TodoService {
     @Override
     public TodoDTO create(TodoDTO todo) {
         Todo persisted = new Todo();
-        persisted.setTitle(todo.getTitle());
-        persisted.setDescription(todo.getDescription());
+        persisted.setName(todo.getName());
+        persisted.setStatus(todo.isStatus());
         persisted = repository.save(persisted);
         return convertToDTO(persisted);
     }
@@ -62,13 +58,17 @@ public class MongoDBTodoService implements TodoService {
     @Override
     public TodoDTO update(TodoDTO todo) {
         Todo updated = findTodoById(todo.getId());
-        updated.update(todo.getTitle(), todo.getDescription());
+        updated.update(todo.isStatus(), todo.getName());
         updated = repository.save(updated);
         return convertToDTO(updated);
     }
  
     private Todo findTodoById(String id) {
-        Optional<Todo> result = repository.findOne(id);
+    	
+//        Todo result = repository.findById(id);
+//        return result;
+    	
+        Optional<Todo> result = repository.findById(id);
         return result.orElseThrow(() -> new TodoNotFoundException(id));
  
     }
@@ -77,8 +77,8 @@ public class MongoDBTodoService implements TodoService {
         TodoDTO dto = new TodoDTO();
  
         dto.setId(model.getId());
-        dto.setTitle(model.getTitle());
-        dto.setDescription(model.getDescription());
+        dto.setStatus(model.getStatus());
+        dto.setName(model.getName());
  
         return dto;
     }
